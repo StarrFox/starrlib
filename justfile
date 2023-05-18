@@ -14,5 +14,8 @@ bump:
     git push
     git push --tags
 
+publish: bump
+    poetry publish --build
+
 shell:
     poetry shell
