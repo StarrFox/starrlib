@@ -74,15 +74,15 @@ class TypedBytes:
         packed = struct.pack(type_format, data)
         return self.buffer.write(packed)
 
-    def read_string(self, encoding: str = "utf-8") -> str:
-        string_len = self.read_typed("unsigned short")
+    def read_string(self, size_type: str, encoding: str = "utf-8") -> str:
+        string_len = self.read_typed(size_type)
         string_data = self.buffer.read(string_len)
         return string_data.decode(encoding=encoding)
 
-    def write_string(self, string: str, encoding: str = "utf-8"):
+    def write_string(self, size_type: str, string: str, encoding: str = "utf-8"):
         string_len = len(string)
         string_data = string.encode(encoding=encoding)
-        self.write_typed("unsigned short", string_len)
+        self.write_typed(size_type, string_len)
         self.buffer.write(string_data)
 
     def seek_forward_typed(self, type_name: str):
