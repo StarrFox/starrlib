@@ -1,8 +1,5 @@
 import io
 import struct
-import typing
-
-from typing import Protocol, Self
 
 
 cpp_type_format_dict = {
